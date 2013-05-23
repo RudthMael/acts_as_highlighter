@@ -10,7 +10,7 @@ module ActsAsHighlighter
 
 		def code_block( content, syntax = default_syntax )
 			# как добавить эскейпинг входной строки?
-			"<pre class='brush: #{syntax};'>(content)</pre>".html_safe
+			"<pre class='brush: #{syntax};'>#{content}</pre>".html_safe
 		end
 
 	end
