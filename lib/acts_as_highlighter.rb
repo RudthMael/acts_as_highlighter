@@ -15,6 +15,9 @@ module ActsAsHighlighter
 
 	end
 
+	class Engine < Rails::Engine
+  	end
+
 end
 
 class String
