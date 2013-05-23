@@ -2,11 +2,19 @@
 
 module ActsAsHighlighter
 
-	DEFAULT_SYNTAX = "ruby"
+	@default_syntax = "ruby"
 
-	def code_block( content, syntax = DEFAULT_SYNTAX )
-		"<pre class='brush: #{ syntax };>#{ h (content) }</pre>".html_safe
+	class << self
+
+		attr_accessor :default_syntax
+
+		def code_block( content, syntax = default_syntax )
+			# как добавить эскейпинг входной строки?
+			"<pre class='brush: #{syntax};'>(content)</pre>".html_safe
+		end
+
 	end
+
 end
 
 class String
