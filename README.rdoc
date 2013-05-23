@@ -1,0 +1,11 @@
+= ActsAsHighlighter
+
+Распространяется по MIT-лицензии
+
+= Добавляет основанную на JavaScript подсветку синтаксиса
+
+Собственно подсветка взята вот отсюда <https://github.com/alexgorbatchev/SyntaxHighlighter>
+
+= Добавляет в Rails проект команда
+
+script/plugin 
