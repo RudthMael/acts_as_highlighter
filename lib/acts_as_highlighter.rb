@@ -18,7 +18,7 @@ module ActsAsHighlighter
 end
 
 class String
-	def highlight( syntax = ActsAsHighlighter::DEFAULT_SYNTAX )
-		code_block( self, syntax )
+	def highlight( syntax = ActsAsHighlighter.default_syntax )
+		ActsAsHighlighter.code_block( self, syntax )
 	end
 end
