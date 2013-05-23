@@ -77,7 +77,7 @@
 
     ActsAsHighlighter.default_syntax = "c"
 
-Эту строку можно поместить например в файл +highlighter-config.rb+ в папке +/config/initializers/+ приложения.
+Эту строку можно поместить например в файл +highlighter_init.rb+ в папке +/config/initializers/+ приложения. Или изменять динамически в процессе работы приложения.
 
 ==== Применение ( примеры для _haml_ )
 
@@ -97,10 +97,45 @@
           puts 'a'
         end
 
+==== Применение ( примеры для _erb_ )
+
+Ну например так:
+
+    <div class="code_container">
+    	<%= code_block("def a; 'a' end")  %> <!-- синтаксис *ruby* по-умолчанию -->
+    </div>
+
+...или так:
+
+    <p>
+        <%= my_string_variable.highlight("cpp") %>  <!-- переменные строки можно подсвечивать на прямую -->
+    </p>
+
+ну и совсем простой вариант:
+
+    <pre class="brush: ruby;">
+        def a
+          puts 'a'
+        end
+    </pre>
 
 ==== Тестирование
 
-Тестирование не проводилось
+Средствами тестовых инструментов проверок не проводилось. Однако работоспособность плагина была проверена на тестовом _Rails_ приложении. Результат этого кода в application.html.erb:
+
+    <%= ActsAsHighlighter.code_block("def a; puts 'a' end") %>
+    <%= "alert(\"Hello world!!!\")".highlight("js") %>
+
+можете увидеть в папке */test/* плагина - файл *check_acts_as_highlighter.png*. Тот же самый результат, но с присутствием в дирректории приложения */config/initializers/* файла *highlighter_init.rb* следующего содержания:
+
+    ActsAsHighlighter.default_syntax = "js"
+
+и соответственно изменёных на
+
+    <%= ActsAsHighlighter.code_block("def a; puts 'a' end", "ruby") %>
+    <%= "alert(\"Hello world!!!\")".highlight %>
+
+строках кода в application.html.erb. Вобщем эта штука работает!
 
 
 ==== Основания
@@ -111,6 +146,8 @@
 
 Реализация возможностей библиотеки SyntaxHighlighter не охваченных этой версией плагина, а именно - различные темы оформления, подсветка строк (выделение) и т.д.
 
-==== Спасибо
+==== Послесловие
 
-AlexGorbatchev за библиотеку.
+Free for use ( лицензия MIT )
+Free for fork
+Free for patch
