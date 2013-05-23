@@ -16,6 +16,14 @@
 
     bundle install
 
+после чего добавить в файл +/app/assets/stylesheet/application.css[.scss|.sass]+ строку:
+
+    *= require acts_as_highlighter
+
+и соответственно в +/app/assets/javascripts/application.js[.coffee]+ строку:
+
+    //= require acts_as_highlighter
+
 
 ==== Пространство имён ( модули и методы )
 

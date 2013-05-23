@@ -1,5 +1,5 @@
 //= require jquery
-//= require shCore
+//= require ./shCore
 //= require_tree .
 //= require_self
 
