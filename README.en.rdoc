@@ -1,0 +1,154 @@
+= acts_as_highlighter
+
+Distributed under the MIT License
+
+If you spot a typo, grammar, logic, or other errors in the text README - please let me know to fix <ivanov.konstantin@logrus.org.ru>
+
+==== Adds based on JavaScript syntax highlighting
+
+Highlight from: <https://github.com/alexgorbatchev/SyntaxHighlighter>. Details: <http://alexgorbatchev.com/SyntaxHighlighter/>. This is stripped-down version of the Source. But it simple to install and use.
+
+==== How add it to Rails:
+
+add to +Gemfile+ :
+
+    gem 'acts_as_highlighter', git: 'git://github.com/logrusorgru/acts_as_highlighter.git'
+
+and run
+
+    bundle install
+
+after that add to a file +'/app/assets/stylesheet/application.css[.scss|.sass]'+ next string:
+
+    *= require acts_as_highlighter
+
+and to a file +'/app/assets/javascripts/application.js[.coffee]'+ next string:
+
+    //= require acts_as_highlighter
+
+
+==== Namespace ( Modules and methods )
+
+Module: +ActsAsHighlighter+. Method: +code_block+. Params:
+
+1. text to highlighting and
+2. syntax.
+
+Moreover: +String+ class now have a method +highlight+. It's params - syntax only.
+
+==== Available syntaxes:
+
+* +as3+, +actionscript3+
+* +bash+, +shell+
+* +cf+, +coldfusion+
+* +c-sharp+, +csharp+
+* +cpp+, +c+
+* +css+
+* +delphi+, +pas+, +pascal+
+* +diff+, +patch+
+* +erl+, +erlang+
+* +groovy+
+* +js+, +jscript+, +javascript+
+* +jfx+, +javafx+
+* +perl+, +pl+
+* +php+
+* +plain+, +text+
+* +ps+, +powershell+
+* +py+, +python+
+* +rails+, +ror+, +ruby+
+* +scala+
+* +sql+
+* +vb+, +vbnet+
+* +xml+, +xhtml+, +xslt+, +html+
+
+and a little more from here <http://www.undermyhat.org/blog/2009/09/list-of-brushes-syntaxhighligher/>:
+
+* +ada+
+* +asm+, +x86+                     # different versions of the asm (that and the next one)
+* +nams8086+, +8086+, +nams+, +masm+
+* +ahk+, +autohotkey+
+* +bat+, +cmd+, +batch+
+* +clojure+, +Clojure+, +clj+
+* +latex+, +tex+
+* +lua+
+* +yaml+, +yml+
+
+==== Default syntax
+
+Default: *ruby*. You may change +ActsAsHighlighter.default_syntax+ variable to change default syntax, as here (for example):
+
+    ActsAsHighlighter.default_syntax = "c"
+
+Put the string above to a file +highlighter_init.rb+ (for example). Then put file to the folder +/config/initializers/+.
+
+==== How use ( _haml_ examples ):
+
+Example 1:
+
+    %div.code_container= code_block("def a; 'a' end")   # A *ruby* is default syntax.
+
+Example 2:
+
+    %p= my_string_variable.highlight("cpp")   # String class method
+
+Example 3:
+
+    %pre{ :class => "brush: ruby;" }
+      :preserve
+        def a
+          puts 'a'
+        end
+
+==== How use ( _erb_ examples )
+
+Example 1:
+
+    <div class="code_container">
+    	<%= code_block("def a; 'a' end")  %> <!-- A *ruby* is default syntax -->
+    </div>
+
+Example 2:
+
+    <p>
+        <%= my_string_variable.highlight("cpp") %>  <!-- String class method -->
+    </p>
+
+Example 3:
+
+    <pre class="brush: ruby;">
+        def a
+          puts 'a'
+        end
+    </pre>
+
+==== Test
+
+The means test tools inspections have been conducted. However, the efficiency of the plugin has been tested on a test _Rails_ application. The result of this code _application.html.erb_:
+
+    <%= ActsAsHighlighter.code_block("def a; puts 'a' end") %>
+    <%= "alert(\"Hello world!!!\")".highlight("js") %>
+
+here link:./test/check_acts_as_highlighter.png. The same result. But a file *highlighter_init.rb* on the folder */config/initializers/* exist and content:
+
+    ActsAsHighlighter.default_syntax = "js"
+
+and the corresponding changes here ( _application.html.erb_ ):
+
+    <%= ActsAsHighlighter.code_block("def a; puts 'a' end", "ruby") %>
+    <%= "alert(\"Hello world!!!\")".highlight %>
+
+It's work!
+
+
+==== the Base
+
+* + simple
+* + client-side (server is resting)
+
+* - no javascript - no highlight
+
+==== Afterword
+
+Free for use ( MIT-license )
+Free for fork
+Free for patch
