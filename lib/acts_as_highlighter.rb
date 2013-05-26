@@ -11,15 +11,16 @@ module ActsAsHighlighter
 		def code_block( content, *opts )
 			params = {
 				:brush => @default_syntax,
-				:auto_links => "true",
+				:auto_links => true,
 				:class_name => '',
-				:collapse => "false",
-				:first_line => "1",
+				:gutter => true,
+				:collapse => false,
+				:first_line => 1,
 				:highlight => "null",
-				:html_script => "false",
-				:smart_tabs => "true",
-				:tab_size => "4",
-				:toolbar => "true"
+				:html_script => false,
+				:smart_tabs => true,
+				:tab_size => 4,
+				:toolbar => true
 			}
 
 			# сохраняем значения по умолчанию
