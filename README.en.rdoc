@@ -4,6 +4,10 @@ Distributed under the MIT License
 
 If you spot a typo, grammar, logic, or other errors in the text README - please let me know to fix <ivanov.konstantin@logrus.org.ru>
 
+==== Warning
+
+this README only for v0.0.1
+
 ==== Adds based on JavaScript syntax highlighting
 
 Highlight from: <https://github.com/alexgorbatchev/SyntaxHighlighter>. Details: <http://alexgorbatchev.com/SyntaxHighlighter/>. This is stripped-down version of the Source. But it simple to install and use.
