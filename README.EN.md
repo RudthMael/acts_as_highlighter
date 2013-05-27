@@ -20,19 +20,27 @@ The javascript library taken from here from [here](https://github.com/alexgorbat
 
 add this line to the `Gemfile`:
 
-    gem 'acts_as_highlighter', git: 'git://github.com/logrusorgru/acts_as_highlighter.git'
+```ruby
+gem 'acts_as_highlighter', git: 'git://github.com/logrusorgru/acts_as_highlighter.git'
+```
 
 then run
 
-    bundle install
+```sh
+bundle install
+```
 
 after this, add this line to the file `./app/assets/stylesheet/application.css[.scss|.sass]`:
 
-    *= require acts_as_highlighter
+```
+*= require acts_as_highlighter
+```
 
 and this line to the file `./app/assets/javascripts/application.js[.coffee]`:
 
-    //= require acts_as_highlighter
+```js
+//= require acts_as_highlighter
+```
 
 
 #### Methods, Params ####
@@ -40,8 +48,10 @@ and this line to the file `./app/assets/javascripts/application.js[.coffee]`:
 Module `ActsAsHighlighter` and its method `code_block`.
 Method `highlight` of a `String` class.
 
-    ActsAsHighlighter.code_block( p1, [p2], [p3] )
-    "some code-string".highlight( [p2], [p3] )
+```ruby
+ActsAsHighlighter.code_block( p1, [p2], [p3] )
+"some code".highlight( [p2], [p3] )
+```
 
 * `p1` - required - string/text to highlight
 * `p2` - optional - syntax ( see below: *Availabel Syntaxes* ), if not specified, it is set by default ( see below: *Default Syntax*), *string*
@@ -49,8 +59,10 @@ Method `highlight` of a `String` class.
 
 Examlpes:
 
-    ActsAsHighlighter( p1, p3 )
-    "puts 'Hello World'".highlight( p3 )
+```ruby
+ActsAsHighlighter( p1, p3 )
+"puts 'Hello World'".highlight( p3 )
+```
 
 #### Options Hash: ####
 
@@ -58,14 +70,15 @@ See [here](http://alexgorbatchev.com/SyntaxHighlighter/manual/configuration) for
 
 **:brush**
 
-> This is equivalent to the **p2** (see above: *Methods, Params* )
->
-    "alert( 'Hello World!' )".highlight( :brush => "js" )
-    "var a = 'a'".highlight( "js" )
-    # the 1st line is equal to the 2nd line
-    "puts 'a'".highlight( "cpp", :brush => "ruby" )
-    # nonsense - the fifst param will be ignored, the second param will rewrite the first param
-    # final syntax: "ruby"
+> Default: default syntax (see below: *Default syntax*).This is equivalent to the **p2** (see above: *Methods, Params* )
+>```ruby
+"alert( 'Hello World!' )".highlight( :brush => "js" )
+"var a = 'a'".highlight( "js" )
+# the 1st line is equal to the 2nd line
+"puts 'a'".highlight( "cpp", :brush => "ruby" )
+# nonsense - the fifst param will be ignored, the second param will rewrite the first param
+# final syntax: "ruby"
+```
 
 - - -
 
@@ -76,57 +89,61 @@ See [here](http://alexgorbatchev.com/SyntaxHighlighter/manual/configuration) for
 **:auto_links**
 
 > Default: *true*. Автоматическое распознание адрессов *(url)* на странице и создание к ним ссылок. По умолчанию включено. Примеры:
->
-    "puts 'my blog: http://www.some-example.blog.ru'".highlight( "ruby" )
-    # ссылка будет кликабельна - выбрано значение по-умолчанию
-    "url = 'https://github.com'".highlight( "ruby", :auto_links => "false" )
-    # ссылки на GitHub.com не будет. 
-    # Обратите внимание, что "false" - это строка, допускаетя использовать этот
-    # параметр как логическое false и как строку "false". Разницы нет.
+>```ruby
+"puts 'my blog: http://www.some-example.blog.ru'".highlight( "ruby" )
+# ссылка будет кликабельна - выбрано значение по-умолчанию
+"url = 'https://github.com'".highlight( "ruby", :auto_links => "false" )
+# ссылки на GitHub.com не будет. 
+# Обратите внимание, что "false" - это строка, допускаетя использовать этот
+# параметр как логическое false и как строку "false". Разницы нет.
+```
 
 **:class_name**
 
-> Значение по-умолчанию: *''* *(пустая строка)*. Задать элементу *css*-класс для обработки его (элемента) через стили *css*. Пример:
->
-    "xor eax,eax".highlight( "asm", :class_name => "assembly" )
-    # элементу можно задать стили через css используюя класс assembly
+> Default: *''* *(empty string)*. Задать элементу *css*-класс для обработки его (элемента) через стили *css*. Пример:
+>```ruby
+"xor eax,eax".highlight( "asm", :class_name => "assembly" )
+# элементу можно задать стили через css используюя класс assembly
+```
 
 **:gutter**
-> Значение по-умолчанию: *true*. Показывать номера строк. *true* - номера будут показаны, *false* - не будут покзаны. Допускается так же использовать строки *"true"* или *"false"* соответственно.
+> Default: *true*. Показывать номера строк. *true* - номера будут показаны, *false* - не будут покзаны. Допускается так же использовать строки *"true"* или *"false"* соответственно.
 
 **:collapse**
-> Значение по-умолчанию: *false*. Код в свёрнутом виде, разворачивается по клику, обратно не сворачивается. В свёрнутом виде видно только надпись **expand source** в рамке.
+> Default: *false*. Код в свёрнутом виде, разворачивается по клику, обратно не сворачивается. В свёрнутом виде видно только надпись **expand source** в рамке.
 
 **:first_line**
-> Значение по-умолчанию: *1*. Нумерация строк. Указывается с какой строки начать нумерацию. Значение - целое число, в т.ч. и в виде строки. Примеры:
->
-    "nop".highlight( "asm", :first_line => 503 )
-    "pusha".highlight( "asm", :first_line => "1024" )
-    # допускаются оба варианта - строка с числом и чило
+> Default: *1*. Нумерация строк. Указывается с какой строки начать нумерацию. Значение - целое число, в т.ч. и в виде строки. Примеры:
+>```ruby
+"nop".highlight( "asm", :first_line => 503 )
+"pusha".highlight( "asm", :first_line => "1024" )
+# допускаются оба варианта - строка с числом и чило
+```
 
 **:highlight**
-> Значение по-умолчанию: *"null"*. Подсветка определённых строк. Параметр - целочисленный массив или целое число, допускается в виде строки. Примеры:
->
-    "def func a,b\nputs a+b\nend".highlight( "ruby", :highlight => [1,3] )
-    # строки 1 и 3 будут подсвечены
-    "xor eax,eax\nmov ebx,eax\nnop".highlight( "asm", :highlight => 2 )
-    # вторая строка будет подсвечена
-    "a = true ?\n'a' : 'A'".highlight( "ruby", :highlight => "[1,2]" )
-    # допускается использовать строки, будет подсвечены строки 1 и 2
+> Default: *"null"*. Подсветка определённых строк. Параметр - целочисленный массив или целое число, допускается в виде строки. Примеры:
+>```ruby
+"def func a,b\nputs a+b\nend".highlight( "ruby", :highlight => [1,3] )
+# строки 1 и 3 будут подсвечены
+"xor eax,eax\nmov ebx,eax\nnop".highlight( "asm", :highlight => 2 )
+# вторая строка будет подсвечена
+"a = true ?\n'a' : 'A'".highlight( "ruby", :highlight => "[1,2]" )
+# допускается использовать строки, будет подсвечены строки 1 и 2
+```
 
 **:html_script**
-> Значение по-умолчанию: *false*. Не особо понял что делает эта опция, смотрите по ссылке, [может что прояснится](http://alexgorbatchev.com/SyntaxHighlighter/manual/configuration) *(англ.)*. Предпологаю, что эта опция позволяет подсвечивать *html* в смеси с *php*, *asp* и *javascript*. Опять же предположительно - в этом случае стоит указать в качестве *:brush* соответственно *php* или например *asp*.
+> Default: *false*. Не особо понял что делает эта опция, смотрите по ссылке, [может что прояснится](http://alexgorbatchev.com/SyntaxHighlighter/manual/configuration) *(англ.)*. Предпологаю, что эта опция позволяет подсвечивать *html* в смеси с *php*, *asp* и *javascript*. Опять же предположительно - в этом случае стоит указать в качестве *:brush* соответственно *php* или например *asp*.
 
 **:smart_tabs**
-> Значение по-умолчанию: *true*. Какая-то фишка табуляции. Вообще не понял, но эта опция её меняет. Смотрите по ссылке выше, чтобы разобраться.
+> Default: *true*. Какая-то фишка табуляции. Вообще не понял, но эта опция её меняет. Смотрите по ссылке выше, чтобы разобраться.
 
 **:tab_size**
-> Значение по-умолчанию: *4*. Размер табыляции. По умолчанию - четыре пробела.
+> Default: *4*. Размер табыляции. По умолчанию - четыре пробела.
 
 **:toolbar**
-> Значение по-умолчанию: *true*. Показывать малюсенькую ссылочку-кнопулечку в виде знака вопрос справа вверху - при нажатии на которую вылетает копирайт *Алекса Горбачёва*.
+> Default: *true*. Показывать малюсенькую ссылочку-кнопулечку в виде знака вопрос справа вверху - при нажатии на которую вылетает копирайт *Алекса Горбачёва*.
 
-#### Availabel Syntaxes: ####
+#### Available Syntaxes: ####
 
 * `as3`, `actionscript3`
 * `bash`, `shell`
@@ -167,7 +184,9 @@ See [here](http://alexgorbatchev.com/SyntaxHighlighter/manual/configuration) for
 
 Собственно сам параметр синтаксис, можно не передавать - если установить нужное значение по-умолчанию. Первоначально оно установленно в **ruby**. Изменить его достаточно просто - при инициализации приложения установить `ActsAsHighlighter.default_syntax` в нужное значение, например так:
 
-    ActsAsHighlighter.default_syntax = "c"
+```ruby
+ActsAsHighlighter.default_syntax = "c"
+```
 
 Эту строку можно поместить например в файл `highlighter_init.rb` в папке `/config/initializers/` приложения. Или изменять значение `ActsAsHighlighter.default_syntax` динамически в процессе работы приложения.
 
@@ -175,41 +194,53 @@ See [here](http://alexgorbatchev.com/SyntaxHighlighter/manual/configuration) for
 
 Ну например так:
 
-    %div.code_container= code_block("def a; 'a' end")   # синтаксис ruby по-умолчанию
+```haml
+%div.code_container= code_block("def a; 'a' end")   # синтаксис ruby по-умолчанию
+```
 
 ...или так:
 
-    %p= my_string_variable.highlight("cpp")   # переменные строки можно подсвечивать на прямую
+```haml
+%p= my_string_variable.highlight("cpp")   # переменные строки можно подсвечивать на прямую
+```
 
 ну и совсем простой вариант:
 
+```haml
     %pre{ :class => "brush: ruby;" }
       :preserve
         def a
           puts 'a'
         end
+```
 
 #### Применение ( примеры для *erb* ) ####
 
 Ну например так:
 
-    <div class="code_container">
-    	<%= code_block("def a; 'a' end")  %> <!-- синтаксис ruby по-умолчанию -->
-    </div>
+```erb
+<div class="code_container">
+    <%= code_block("def a; 'a' end")  %> <!-- синтаксис ruby по-умолчанию -->
+</div>
+```
 
 ...или так:
 
-    <p>
-        <%= my_string_variable.highlight("cpp") %>  <!-- переменные строки можно подсвечивать на прямую -->
-    </p>
+```erb
+<p>
+    <%= my_string_variable.highlight("cpp") %>  <!-- переменные строки можно подсвечивать на прямую -->
+</p>
+```
 
 ну и совсем простой вариант:
 
-    <pre class="brush: ruby;">
-        def a
-          puts 'a'
-        end
-    </pre>
+```erb
+<pre class="brush: ruby;">
+    def a
+        puts 'a'
+    end
+</pre>
+```
 
 #### Важно ####
 
@@ -221,17 +252,23 @@ See [here](http://alexgorbatchev.com/SyntaxHighlighter/manual/configuration) for
 
 Средствами тестовых инструментов проверок не проводилось. Однако работоспособность плагина была проверена на тестовом *Rails* приложении. Результат этого кода в *application.html.erb*:
 
-    <%= ActsAsHighlighter.code_block("def a; puts 'a' end") %>
-    <%= "alert(\"Hello world!!!\")".highlight("js") %>
+```erb
+<%= ActsAsHighlighter.code_block("def a; puts 'a' end") %>
+<%= "alert(\"Hello world!!!\")".highlight("js") %>
+```
 
 можете увидеть здесь ![скриншот браузера](./test/check_acts_as_highlighter.png). Тот же самый результат, но с присутствием в дирректории приложения */config/initializers/* файла *highlighter_init.rb* следующего содержания:
 
-    ActsAsHighlighter.default_syntax = "js"
+```ruby
+ActsAsHighlighter.default_syntax = "js"
+```
 
 и соответственно изменёных на
 
-    <%= ActsAsHighlighter.code_block("def a; puts 'a' end", "ruby") %>
-    <%= "alert(\"Hello world!!!\")".highlight %>
+```erb
+<%= ActsAsHighlighter.code_block("def a; puts 'a' end", "ruby") %>
+<%= "alert(\"Hello world!!!\")".highlight %>
+```
 
 строках кода в *application.html.erb*. Вобщем эта штука работает!
 

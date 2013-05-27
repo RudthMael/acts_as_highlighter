@@ -26,15 +26,21 @@ gem 'acts_as_highlighter', git: 'git://github.com/logrusorgru/acts_as_highlighte
 
 затем выполните
 
-    bundle install
+```sh
+bundle install
+```
 
 после чего добавьте в файл `./app/assets/stylesheet/application.css[.scss|.sass]` строку:
 
-    *= require acts_as_highlighter
+```
+*= require acts_as_highlighter
+```
 
 и соответственно в `./app/assets/javascripts/application.js[.coffee]` строку:
 
-    //= require acts_as_highlighter
+```js
+//= require acts_as_highlighter
+```
 
 
 #### Методы и параметры ####
@@ -43,8 +49,10 @@ gem 'acts_as_highlighter', git: 'git://github.com/logrusorgru/acts_as_highlighte
 
 Примеры:
 
-    ActsAsHighlighter.code_block( p1, [p2], [p3] )
-    "some code".highlight( [p2], [p3] )
+```ruby
+ActsAsHighlighter.code_block( p1, [p2], [p3] )
+"some code".highlight( [p2], [p3] )
+```
 
 * `p1` - обязательный параметр - код для подсветки ( текст/строка )
 * `p2` - не обязательный параметр - вариант синтаксиса ( см. ниже: *Варианты синтаксиса* ), если он не указан, то установлен в значение по умолчанию ( см. ниже: *Синтаксис по-умолчанию*), *строка*
@@ -52,8 +60,10 @@ gem 'acts_as_highlighter', git: 'git://github.com/logrusorgru/acts_as_highlighte
 
 Допускается не указывать второй параметр, но, при этом, указывать третий.
 
-    ActsAsHighlighter( p1, p3 )
-    "puts 'Hello World'".highlight( p3 )
+```ruby
+ActsAsHighlighter( p1, p3 )
+"puts 'Hello World'".highlight( p3 )
+```
 
 #### Хеш опций: ####
 
@@ -74,20 +84,22 @@ gem 'acts_as_highlighter', git: 'git://github.com/logrusorgru/acts_as_highlighte
 **:auto_links**
 
 > Значение по-умолчанию: *true*. Автоматическое распознание адрессов *(url)* на странице и создание к ним ссылок. По умолчанию включено. Примеры:
->
-    "puts 'my blog: http://www.some-example.blog.ru'".highlight( "ruby" )
-    # ссылка будет кликабельна - выбрано значение по-умолчанию
-    "url = 'https://github.com'".highlight( "ruby", :auto_links => "false" )
-    # ссылки на GitHub.com не будет. 
-    # Обратите внимание, что "false" - это строка, допускаетя использовать этот
-    # параметр как логическое false и как строку "false". Разницы нет.
+>```ruby
+"puts 'my blog: http://www.some-example.blog.ru'".highlight( "ruby" )
+# ссылка будет кликабельна - выбрано значение по-умолчанию
+"url = 'https://github.com'".highlight( "ruby", :auto_links => "false" )
+# ссылки на GitHub.com не будет. 
+# Обратите внимание, что "false" - это строка, допускаетя использовать этот
+# параметр как логическое false и как строку "false". Разницы нет.
+```
 
 **:class_name**
 
 > Значение по-умолчанию: *''* *(пустая строка)*. Задать элементу *css*-класс для обработки его (элемента) через стили *css*. Пример:
->
-    "xor eax,eax".highlight( "asm", :class_name => "assembly" )
-    # элементу можно задать стили через css используюя класс assembly
+>```ruby
+"xor eax,eax".highlight( "asm", :class_name => "assembly" )
+# элементу можно задать стили через css используюя класс assembly
+```
 
 **:gutter**
 > Значение по-умолчанию: *true*. Показывать номера строк. *true* - номера будут показаны, *false* - не будут покзаны. Допускается так же использовать строки *"true"* или *"false"* соответственно.
@@ -97,20 +109,22 @@ gem 'acts_as_highlighter', git: 'git://github.com/logrusorgru/acts_as_highlighte
 
 **:first_line**
 > Значение по-умолчанию: *1*. Нумерация строк. Указывается с какой строки начать нумерацию. Значение - целое число, в т.ч. и в виде строки. Примеры:
->
-    "nop".highlight( "asm", :first_line => 503 )
-    "pusha".highlight( "asm", :first_line => "1024" )
-    # допускаются оба варианта - строка с числом и чило
+>```ruby
+"nop".highlight( "asm", :first_line => 503 )
+"pusha".highlight( "asm", :first_line => "1024" )
+# допускаются оба варианта - строка с числом и чило
+```
 
 **:highlight**
 > Значение по-умолчанию: *"null"*. Подсветка определённых строк. Параметр - целочисленный массив или целое число, допускается в виде строки. Примеры:
->
-    "def func a,b\nputs a+b\nend".highlight( "ruby", :highlight => [1,3] )
-    # строки 1 и 3 будут подсвечены
-    "xor eax,eax\nmov ebx,eax\nnop".highlight( "asm", :highlight => 2 )
-    # вторая строка будет подсвечена
-    "a = true ?\n'a' : 'A'".highlight( "ruby", :highlight => "[1,2]" )
-    # допускается использовать строки, будет подсвечены строки 1 и 2
+>```ruby
+"def func a,b\nputs a+b\nend".highlight( "ruby", :highlight => [1,3] )
+# строки 1 и 3 будут подсвечены
+"xor eax,eax\nmov ebx,eax\nnop".highlight( "asm", :highlight => 2 )
+# вторая строка будет подсвечена
+"a = true ?\n'a' : 'A'".highlight( "ruby", :highlight => "[1,2]" )
+# допускается использовать строки, будет подсвечены строки 1 и 2
+```
 
 **:html_script**
 > Значение по-умолчанию: *false*. Не особо понял что делает эта опция, смотрите по ссылке, [может что прояснится](http://alexgorbatchev.com/SyntaxHighlighter/manual/configuration) *(англ.)*. Предпологаю, что эта опция позволяет подсвечивать *html* в смеси с *php*, *asp* и *javascript*. Опять же предположительно - в этом случае стоит указать в качестве *:brush* соответственно *php* или например *asp*.
@@ -165,7 +179,9 @@ gem 'acts_as_highlighter', git: 'git://github.com/logrusorgru/acts_as_highlighte
 
 Собственно сам параметр синтаксис, можно не передавать - если установить нужное значение по-умолчанию. Первоначально оно установленно в **ruby**. Изменить его достаточно просто - при инициализации приложения установить `ActsAsHighlighter.default_syntax` в нужное значение, например так:
 
-    ActsAsHighlighter.default_syntax = "c"
+```ruby
+ActsAsHighlighter.default_syntax = "c"
+```
 
 Эту строку можно поместить например в файл `highlighter_init.rb` в папке `/config/initializers/` приложения. Или изменять значение `ActsAsHighlighter.default_syntax` динамически в процессе работы приложения.
 
@@ -173,41 +189,53 @@ gem 'acts_as_highlighter', git: 'git://github.com/logrusorgru/acts_as_highlighte
 
 Ну например так:
 
-    %div.code_container= code_block("def a; 'a' end")   # синтаксис ruby по-умолчанию
+```haml
+%div.code_container= code_block("def a; 'a' end")   # синтаксис ruby по-умолчанию
+```
 
 ...или так:
 
-    %p= my_string_variable.highlight("cpp")   # переменные строки можно подсвечивать на прямую
+```haml
+%p= my_string_variable.highlight("cpp")   # переменные строки можно подсвечивать на прямую
+```
 
 ну и совсем простой вариант:
 
+```haml
     %pre{ :class => "brush: ruby;" }
       :preserve
         def a
           puts 'a'
         end
+```
 
 #### Применение ( примеры для *erb* ) ####
 
 Ну например так:
 
-    <div class="code_container">
-    	<%= code_block("def a; 'a' end")  %> <!-- синтаксис ruby по-умолчанию -->
-    </div>
+```erb
+<div class="code_container">
+   	<%= code_block("def a; 'a' end")  %> <!-- синтаксис ruby по-умолчанию -->
+</div>
+```
 
 ...или так:
 
-    <p>
-        <%= my_string_variable.highlight("cpp") %>  <!-- переменные строки можно подсвечивать на прямую -->
-    </p>
+```erb
+<p>
+    <%= my_string_variable.highlight("cpp") %>  <!-- переменные строки можно подсвечивать на прямую -->
+</p>
+```
 
 ну и совсем простой вариант:
 
-    <pre class="brush: ruby;">
-        def a
-          puts 'a'
-        end
-    </pre>
+```erb
+<pre class="brush: ruby;">
+    def a
+        puts 'a'
+    end
+</pre>
+```
 
 #### Важно ####
 
@@ -219,17 +247,23 @@ gem 'acts_as_highlighter', git: 'git://github.com/logrusorgru/acts_as_highlighte
 
 Средствами тестовых инструментов проверок не проводилось. Однако работоспособность плагина была проверена на тестовом *Rails* приложении. Результат этого кода в *application.html.erb*:
 
-    <%= ActsAsHighlighter.code_block("def a; puts 'a' end") %>
-    <%= "alert(\"Hello world!!!\")".highlight("js") %>
+```erb
+<%= ActsAsHighlighter.code_block("def a; puts 'a' end") %>
+<%= "alert(\"Hello world!!!\")".highlight("js") %>
+```
 
 можете увидеть здесь ![скриншот браузера](./test/check_acts_as_highlighter.png). Тот же самый результат, но с присутствием в дирректории приложения */config/initializers/* файла *highlighter_init.rb* следующего содержания:
 
-    ActsAsHighlighter.default_syntax = "js"
+```ruby
+ActsAsHighlighter.default_syntax = "js"
+```
 
 и соответственно изменёных на
 
-    <%= ActsAsHighlighter.code_block("def a; puts 'a' end", "ruby") %>
-    <%= "alert(\"Hello world!!!\")".highlight %>
+```erb
+<%= ActsAsHighlighter.code_block("def a; puts 'a' end", "ruby") %>
+<%= "alert(\"Hello world!!!\")".highlight %>
+```
 
 строках кода в *application.html.erb*. Вобщем эта штука работает!
 
