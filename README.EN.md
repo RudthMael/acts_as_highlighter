@@ -126,7 +126,7 @@ See [here](http://alexgorbatchev.com/SyntaxHighlighter/manual/configuration) for
 **:toolbar**
 > Значение по-умолчанию: *true*. Показывать малюсенькую ссылочку-кнопулечку в виде знака вопрос справа вверху - при нажатии на которую вылетает копирайт *Алекса Горбачёва*.
 
-#### Варианты синтаксиса: ####
+#### Availabel Syntaxes: ####
 
 * `as3`, `actionscript3`
 * `bash`, `shell`
@@ -163,7 +163,7 @@ See [here](http://alexgorbatchev.com/SyntaxHighlighter/manual/configuration) for
 * `lua`
 * `yaml`, `yml`
 
-#### Синтаксис по-умолчанию ####
+#### Default Syntax ####
 
 Собственно сам параметр синтаксис, можно не передавать - если установить нужное значение по-умолчанию. Первоначально оно установленно в **ruby**. Изменить его достаточно просто - при инициализации приложения установить `ActsAsHighlighter.default_syntax` в нужное значение, например так:
 

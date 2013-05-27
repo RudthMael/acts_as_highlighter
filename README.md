@@ -20,7 +20,9 @@
 
 добавьте строку в `Gemfile`:
 
-    gem 'acts_as_highlighter', git: 'git://github.com/logrusorgru/acts_as_highlighter.git'
+```ruby
+gem 'acts_as_highlighter', git: 'git://github.com/logrusorgru/acts_as_highlighter.git'
+```
 
 затем выполните
 
@@ -60,13 +62,14 @@
 **:brush**
 
 > Вариант синтаксиса, его можно передать и через хеш-опций и как параметр перед хешом опций. Если не установлен - то это синтаксис по-умолчанию ( см. ниже: *Синтаксис по-умолчанию* ). Примеры:
->
-    "alert( 'Hello World!' )".highlight( :brush => "js" )
-    "var a = 'a'".highlight( "js" )
-    # выражение эквивалентно первому
-    "puts 'a'".highlight( "cpp", :brush => "ruby" )
-    # бессмыслица - второй параметр будет учтён, первый проигнорирован
-    # подсветка синтаксиса - "ruby"
+>```ruby
+"alert( 'Hello World!' )".highlight( :brush => "js" )
+"var a = 'a'".highlight( "js" )
+# выражение эквивалентно первому
+"puts 'a'".highlight( "cpp", :brush => "ruby" )
+# бессмыслица - второй параметр будет учтён, первый проигнорирован
+# подсветка синтаксиса - "ruby"
+```
 
 **:auto_links**
 
