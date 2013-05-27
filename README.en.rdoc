@@ -1,8 +1,8 @@
 = acts_as_highlighter
 
-Distributed under the MIT License
+Distributed under a MIT License
 
-If you spot a typo, grammar, logic, or other errors in the text README - please let me know to fix <ivanov.konstantin@logrus.org.ru>
+If you spot a typo, a grammar errors, a logic errors and other errors in the text README - please let me know to fix it. <ivanov.konstantin@logrus.org.ru>
 
 ==== Warning
 
