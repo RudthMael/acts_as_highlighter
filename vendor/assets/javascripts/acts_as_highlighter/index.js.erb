@@ -1,0 +1,12 @@
+//= require jquery
+//= require ./shCore
+<% unless use_brushes != "all" %>
+<% use_brushes.each do |b| %>
+<%= "//= require ./shBrush#{b}\n" %>
+<% end %>
+<% else %>
+<%= "//= require_tree ." %>
+<% end %>
+//= require_self
+
+	SyntaxHighlighter.all();

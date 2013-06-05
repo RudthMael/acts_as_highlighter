@@ -54,7 +54,7 @@ ActsAsHighlighter.code_block( p1, [p2], [p3] )
 ```
 
 * `p1` - required - string/text to highlight
-* `p2` - optional - syntax ( see below: *Availabel Syntaxes* ), if not specified, it is set by default ( see below: *Default Syntax*), *string*
+* `p2` - optional - syntax ( see below: *Available Syntaxes* ), if not specified, it is set by default ( see below: *Default Syntax*), *string*
 * `p3` - optional - options hash ( see below: *Options Hash* ), if not specified, it is set by default, *hash*
 
 Examlpes:
@@ -73,7 +73,7 @@ See [here](http://alexgorbatchev.com/SyntaxHighlighter/manual/configuration) for
 > Default: default syntax (see below: *Default syntax*).This is equivalent to the **p2** (see above: *Methods, Params* )
 >```ruby
 "alert( 'Hello World!' )".highlight( :brush => "js" )
-"var a = 'a'".highlight( "js" )
+"alert( 'Hello World!' )".highlight( "js" )
 # the 1st line is equal to the 2nd line
 "puts 'a'".highlight( "cpp", :brush => "ruby" )
 # nonsense - the fifst param will be ignored, the second param will rewrite the first param
