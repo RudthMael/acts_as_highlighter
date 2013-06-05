@@ -1,3 +1,7 @@
 /*
+ *= require ./shCoreDefault
+*/
+
+/* Dump
 <%= " *= require ./shCore#{ActsAsHighlighter.theme}" %>
 */
